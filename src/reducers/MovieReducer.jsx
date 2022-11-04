@@ -1,8 +1,9 @@
 import { types } from "../types/types";
 
-
 const initialState = {
-	movies: []
+	movies: {
+		results: []
+	}
 }
 
 export const MovieReducer = (state = initialState, action) => {
