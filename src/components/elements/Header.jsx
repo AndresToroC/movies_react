@@ -92,7 +92,8 @@ export const Header = () => {
 					<h1 className='text-3xl font-bold tracking-tight text-gray-900'>
 						{
 							navigation.map((item) => (
-								item.href == pathname
+								// item.href == pathname
+								pathname.includes(item.href)
 									? item.name
 									: ''
 							))

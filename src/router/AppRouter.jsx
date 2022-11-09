@@ -6,6 +6,7 @@ import {
 	Navigate,
 } from "react-router-dom";
 import { MovieScreen } from '../components/movies/MovieScreen';
+import { MovieShow } from '../components/movies/MovieShow';
 import { SerieScreen } from '../components/series/SerieScreen';
 
 export const AppRouter = () => {
@@ -13,6 +14,8 @@ export const AppRouter = () => {
     <BrowserRouter>
 			<Routes>
 				<Route path="/movies" element={<MovieScreen />} />
+				<Route path="/movies/:id" element={<MovieShow />} />
+
 				<Route path="/series" element={<SerieScreen />} />
 
 				{/* Redireccionar a la pagina principal si la ruta no esta definida */}

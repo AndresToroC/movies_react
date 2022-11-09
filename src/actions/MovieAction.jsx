@@ -74,3 +74,30 @@ export const movieSearch = (name) => {
 		}
 	}
 }
+
+export const movieGetId = (id) => {
+	const params = new URLSearchParams({
+		api_key: API_KEY,
+		language: 'es-ES'
+	});
+
+	return async(dispatch) => {
+		try {
+			await fetch(`${ API_URL }movie/${ id }?${ params.toString() }`)
+				.then(res => res.json())
+				.then(data => {
+					dispatch({
+						type: types.movieGetId,
+						payload: data
+					})
+				})
+		} catch (error) {
+			Swal.fire({
+				title: 'Error!',
+				text: 'Ah ocurrido un error',
+				icon: 'error',
+				confirmButtonText: 'Ok'
+			})
+		}
+	}
+}
