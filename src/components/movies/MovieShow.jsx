@@ -11,36 +11,38 @@ export const MovieShow = () => {
 	const dispatch = useDispatch();
 	const { id } = useParams();
 
-	const { movieSelected } = useSelector(state => state.movie);
+	const { movieSelected: movie } = useSelector(state => state.movie);
 	
 	useEffect(() => {
 		dispatch(movieGetId(id));
 	}, [id])
 	
-	if (!Object.keys(movieSelected).length ) {
+	if (!Object.keys(movie).length ) {
 		return (
 			<></>
 		);
 	}
+
+	const vote_avarege = `${ ((movie.vote_average / 100) * 1000).toFixed(0) }%`;
 
   return (
     <>
 			<Header />
 			
 			<main>
-        <div className="mx-auto max-w-2xl py-10 px-4 lg:max-w-7xl lg:px-8">
-					<div className='bg-white p-6 rounded-lg border border-gray-200 shadow-md'>
+        <div className="mx-auto max-w-4xl py-10 px-4 lg:max-w-7xl lg:px-40">
+					<div className='bg-white rounded-lg border border-gray-200 shadow-md'>
 						<div className='grid grid-cols-1 gap-10 md:grid-cols-2 sm:grid-cols-2'>
-							<div>
+							<div className='sm:p-6 md:p-6 lg:p-6'>
 								<img 
-									src={ `${ IMG_URL }${ movieSelected.poster_path} `}
+									src={ `${ IMG_URL }${ movie.poster_path} `}
 									alt='Imagen'
-									className='rounded-md'
+									className='rounded-t sm:rounded-lg md:rounded-lg lg:rounded-lg'
 								/>
 							</div>
-							<div>
-								<div>
-									<Link to="/movies" className='bg-gray-500 rounded-md'>
+							<div className='px-6 sm:p-6 md:p-6 lg:p-6'>
+								<div className='flex justify-end'>
+									<Link to="/movies" className='bg-gray-500 px-4 py-2 rounded text-white hover:bg-gray-400'>
 										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
 											<path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
 										</svg>
@@ -48,27 +50,37 @@ export const MovieShow = () => {
 								</div>
 
 								<div className='flex justify-between text-sm pt-4'>
-									<h2 className='font-bold text-lg capitalize'>{ movieSelected.title }</h2>
+									<p className='font-bold text-xl capitalize'>{ movie.title }</p>
 									<div className='flex justify-end gap-2'>
-										{ movieSelected.runtime } m
+										{ movie.runtime } m
 										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
 											<path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
 										</svg>
 									</div>
 								</div>
 
-								{/* Eslogan */}
+								<div className='pt-4 text-md italic text-gray-600'>
+									<p>{ movie.release_date }</p>
+									
+									{/* Eslogan */}
+									<p>{ movie.tagline }</p>
+								</div>
+
 								<div className='pt-4'>
-									<h3 className='font-bold'>Eslogan</h3>
-									<p className='text-sm'>{ movieSelected.tagline }</p>
+									<p className='font-bold'>Puntuación de usuario</p>
+									<div className="w-full bg-gray-200 rounded-full">
+										<div className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style={{ width: vote_avarege }}> 
+											{ vote_avarege }
+										</div>
+									</div>
 								</div>
 
 								{/* Genres */}
 								<div className='pt-4'>
-									<h3 className='font-bold'>Generos</h3>
+									<p className='font-bold'>Generos</p>
 									<ul className='pl-6 list-disc text-gray-500'>
 										{
-											movieSelected.genres.map((genre) => (
+											movie.genres.map((genre) => (
 												<li key={ genre.id } className='text-sm capitalize'>{ genre.name }</li>
 											))
 										}
@@ -77,9 +89,9 @@ export const MovieShow = () => {
 							</div>
 						</div>
 						{/* Description */}
-						<div className='pt-4'>
-							<h3 className='font-bold'>Descripción</h3>
-							<p className='text-sm'>{ movieSelected.overview }</p>
+						<div className='p-6 pt-4'>
+							<p className='font-bold'>Descripción</p>
+							<p className='text-sm'>{ movie.overview }</p>
 						</div>
 					</div>
 				</div>

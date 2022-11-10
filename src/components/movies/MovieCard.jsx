@@ -7,22 +7,24 @@ export const MovieCard = ({ movies }) => {
   return (
 		<>
 			{
-				movies.results.map((movie) => (
-					<div className='group relative' key={ movie.id }>
-						<Link to={ `/movies/${ movie.id }` }>
-							<img 
-								src={ `${ API_IMG }${ movie.poster_path }` }
-								alt='Imagen'
-								className='rounded-lg'
-							/>
-							<div className='py-4'>
-								<div className='text-sm text-center font-bold'>
-									{ movie.original_title }
+				movies.results.map((movie) => {
+					return movie.poster_path ? 
+						<div className='group relative' key={ movie.id }>
+							<Link to={ `/movies/${ movie.id }` }>
+								<img 
+									src={ `${ API_IMG }${ movie.poster_path }` }
+									alt='Imagen'
+									className='rounded-lg'
+								/>
+								<div className='py-4'>
+									<div className='text-sm text-center font-bold'>
+										{ movie.original_title }
+									</div>
 								</div>
-							</div>
-						</Link>
-					</div>
-				))
+							</Link>
+						</div>
+						: ''
+				})
 			}
 		</>
   )
