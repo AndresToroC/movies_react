@@ -1,13 +1,15 @@
+import Swal from "sweetalert2";
 import { types } from "../types/types";
 
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 // Se obtiene el top de peliculas
-export const movieAll = () => {
+export const movieAll = (page = null) => {
 	const params = new URLSearchParams({
 		api_key: API_KEY,
-		language: 'es-ES'
+		language: 'es-ES', 
+		page: (page) ? page : ''
 	});
 
 	return async(dispatch) => {

@@ -1,8 +1,16 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { movieGetId } from '../../actions/MovieAction';
 
 export const MovieCard = ({ movies }) => {
   const API_IMG = import.meta.env.VITE_API_IMG;
+	const dispatch = useDispatch();
+
+	const handleMovieGetId = (id) => {
+		console.log(32132);
+		dispatch(movieGetId(id));
+	}
 	
   return (
 		<>
@@ -10,7 +18,7 @@ export const MovieCard = ({ movies }) => {
 				movies.results.map((movie) => {
 					return movie.poster_path ? 
 						<div className='group relative' key={ movie.id }>
-							<Link to={ `/movies/${ movie.id }` }>
+							<Link to={ `/movies/${ movie.id }` } onClick={ () => handleMovieGetId( movie.id ) }>
 								<img 
 									src={ `${ API_IMG }${ movie.poster_path }` }
 									alt='Imagen'

@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 const navigation = [
   { name: 'Peliculas', href: '/movies', current: true },
-  { name: 'Series', href: '/series', current: false }
+  // { name: 'Series', href: '/series', current: false }
 ]
 
 export const Header = () => {

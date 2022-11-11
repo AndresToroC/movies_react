@@ -1,25 +1,16 @@
 import React from 'react'
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom'
-import { movieGetId } from '../../actions/MovieAction';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 import { Header } from '../elements/Header'
 
 export const MovieShow = () => {
 	const IMG_URL = import.meta.env.VITE_API_IMG;
 
-	const dispatch = useDispatch();
-	const { id } = useParams();
-
 	const { movieSelected: movie } = useSelector(state => state.movie);
-	
-	useEffect(() => {
-		dispatch(movieGetId(id));
-	}, [id])
 	
 	if (!Object.keys(movie).length ) {
 		return (
-			<></>
+			<>Cargando ...</>
 		);
 	}
 

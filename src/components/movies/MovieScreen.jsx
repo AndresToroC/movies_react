@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 import { movieAll, movieSearch } from '../../actions/MovieAction'
 import { Header } from '../elements/Header'
+import { Paginate } from '../elements/Paginate'
 import { MovieCard } from './MovieCard'
 
 export const MovieScreen = () => {
@@ -75,6 +76,10 @@ export const MovieScreen = () => {
               </div>
             )
           }
+          
+          <div className='pt-4'>
+            <Paginate page={ movies.page } total_pages="500" />
+          </div>
         </div>
       </main>
     </>
