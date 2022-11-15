@@ -5,9 +5,10 @@ import {
 	Route,
 	Navigate,
 } from "react-router-dom";
+import { ActorScreen } from '../components/actor/ActorScreen';
+import { ActorShow } from '../components/actor/ActorShow';
 import { MovieScreen } from '../components/movies/MovieScreen';
 import { MovieShow } from '../components/movies/MovieShow';
-import { SerieScreen } from '../components/series/SerieScreen';
 
 export const AppRouter = () => {
   return (
@@ -16,7 +17,8 @@ export const AppRouter = () => {
 				<Route path="/movies" element={<MovieScreen />} />
 				<Route path="/movies/:id" element={<MovieShow />} />
 
-				<Route path="/series" element={<SerieScreen />} />
+				<Route path="/actor" element={<ActorScreen />} />
+				<Route path="/actor/:id" element={<ActorShow />} />
 
 				{/* Redireccionar a la pagina principal si la ruta no esta definida */}
 				<Route path="*" element={<Navigate to="/movies" />} />
