@@ -4,14 +4,22 @@ import { useDispatch } from 'react-redux';
 import { movieAll } from '../../actions/MovieAction';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { actorAll } from '../../actions/ActorAction';
+import { useLocation } from 'react-router-dom';
 
 export const Paginate = ({ page, total_pages }) => {
   const dispatch = useDispatch();
   const [firstPage, setFirstPage] = useState(false)
   const [lastPage, setLastPage] = useState(false)
+	
+  const { pathname } = useLocation();
 
   const paginateLoadData = (page_selected) => {
-    dispatch(movieAll(page_selected));
+    if (pathname.includes('actor')) {
+      dispatch(actorAll(page_selected))
+    } else if (pathname.includes('movies')) {
+      dispatch(movieAll(page_selected))
+    }
   }
 
   useEffect(() => {

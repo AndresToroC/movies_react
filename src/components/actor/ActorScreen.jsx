@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { actorAll } from '../../actions/ActorAction'
 import { Header } from '../elements/Header'
+import { Paginate } from '../elements/Paginate'
 import { ActionCard } from './ActionCard'
 
 export const ActorScreen = () => {
@@ -31,6 +32,10 @@ export const ActorScreen = () => {
               </div>
             )
           }
+
+          <div className='pt-4'>
+            <Paginate page={ actors.page } total_pages="500" />
+          </div>
         </div>
       </main>
     </>
