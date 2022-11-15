@@ -8,7 +8,6 @@ export const MovieCard = ({ movies }) => {
 	const dispatch = useDispatch();
 
 	const handleMovieGetId = (id) => {
-		console.log(32132);
 		dispatch(movieGetId(id));
 	}
 	

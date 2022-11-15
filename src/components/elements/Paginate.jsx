@@ -31,10 +31,10 @@ export const Paginate = ({ page, total_pages }) => {
 
   return (
     <>
-      <div className='flex justify-between'>
-        <div className='pt-4'>
-          <p>Pagina: { page }</p>
-        </div>
+      <div className='flex justify-center pb-4'>
+        <div>Pagina <b>{ page }</b> de <b>{ total_pages }</b></div>
+      </div>
+      <div className='flex justify-center'>
         <nav aria-label="Paginacion">
           <ul className="inline-flex items-center -space-x-px">
             <li>
@@ -78,9 +78,6 @@ export const Paginate = ({ page, total_pages }) => {
             </li>
           </ul>
         </nav>
-        <div className='pt-4'>
-          <p>Total paginas: { total_pages }</p>
-        </div>
       </div>
     </>
   )
